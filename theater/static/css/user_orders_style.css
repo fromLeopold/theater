@@ -1,0 +1,27 @@
+.order {
+    border-bottom: 1px solid #616161;
+    margin-left: 100px;
+    margin-right: 100px;
+    padding: 10px 0;
+    align-items: center; /* Выравниваем элементы по вертикали */
+}
+
+.order:last-child {
+    border-bottom: none;
+}
+
+.button-download {
+    border-radius: 40px;
+    width: 100px;
+    height: 30px;
+    font-size: 12px;
+    background: transparent;
+    border: 1px solid blue;
+    color: #e1e1eb;
+}
+
+.button-download:hover {
+    text-shadow: 0 0px 10px blue;
+    box-shadow: 0 0px 13px blue;
+    cursor: pointer;
+}

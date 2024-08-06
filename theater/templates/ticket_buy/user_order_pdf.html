@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Билет</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .order {
+            border-bottom: 1px solid #616161;
+            margin-left: 100px;
+            margin-right: 100px;
+            padding: 10px 0;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="order">
+        <h2>Спектакль: {{ order.ticket.session.performance.name }}</h2>
+        <p><span>Дата:</span> {{ order.ticket.session.date|date:"d.m" }}</p>
+        <p><span>Время:</span> {{ order.ticket.session.date|time:"H:i" }}</p>
+        <p><span>Место:</span> {{ order.ticket.session.hall.name }}</p>
+        <p><span>Сектор:</span> {{ order.ticket.seat.hall_sector.name }}</p>
+        <p><span>Ряд:</span> {{ order.ticket.seat.row }}</p>
+        <p><span>Место:</span> {{ order.ticket.seat.place }}</p>
+        <p><span>Цена:</span> {{ order.ticket.price }}</p>
+        <p><span>Номер заказа:</span> {{ order.order_number }}</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+{% extends 'theater_info/base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css\theater_contacts_style.css' %}">
+{% endblock head %}
+
+{% block content %}
+
+<div class="contacts-header">
+    <div class="c-h-title">Контакты</div>
+</div>
+
+{% for theater in theater_list %}
+<div class="container-contacts">
+    <div class="info-block">
+        <p class="title">Театр:</p>
+        <p class="info">{{ theater.name }}</p>
+    </div>
+    <div class="info-block">
+        <p class="title">Тип:</p>
+        <p class="info">{{ theater.type }}</p>
+    </div>
+    <div class="info-block">
+        <p class="title">Адрес:</p>
+        <p class="info">{{ theater.address }}</p>
+    </div>
+    <div class="info-block">
+        <p class="title">Телефон:</p>
+        <p class="info">{{ theater.phone_number }}</p>
+    </div>
+    <div class="info-block">
+        <p class="title">E-mail:</p>
+        <p class="info">{{ theater.email}}</p>
+    </div>
+    {% for s in theater.social_media.all %}
+    <div class="info-block">
+        <p class="title">{{ s.name }}</p>
+        <p class="info">{{ s.address }}</p>
+    </div>
+    {% endfor %}
+</div>
+{% endfor %}
+
+{% endblock content %}

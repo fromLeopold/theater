@@ -1,0 +1,29 @@
+{% extends 'theater_info/base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css\troupe_member_details_style.css' %}">
+{% endblock head %}
+
+{% block menu %}
+{% endblock menu %}
+
+{% block content %}
+<button class="back-button" onclick="history.back()">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+        <path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="miter" vector-effect="non-scaling-stroke" d="M2.5,11 L12,1 M2.5,11 L12,21 M1.7,11 L27,11"></path>
+    </svg>
+</button>
+
+<div class="member-info-container">
+    <div class="member-name">{{ member.last_name }} {{ member.first_name }} {{ member.middle_name }}</div>
+    <div class="member-photo"><img class="photo" src="{{ member.image.url }}"></div>
+    <div>
+        <p class="member-info"><b>Звание: </b><br>{{ member.title }}</p><br>
+        <p class="member-info"><b>Информация:</b><br>{{ member.description }}</p>
+    </div>
+</div>
+{% endblock content %}
+
+{% block js %}
+{% endblock js %}

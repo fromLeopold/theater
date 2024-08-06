@@ -1,0 +1,129 @@
+{% extends 'theater_info/base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css\ticket_booking_style.css' %}">
+{% endblock head %}
+
+
+{% block menu %}
+{% endblock menu %}
+
+
+{% block content %}
+<button class="back-button" onclick="history.back()">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+        <path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="miter" vector-effect="non-scaling-stroke" d="M2.5,11 L12,1 M2.5,11 L12,21 M1.7,11 L27,11"></path>
+    </svg>
+</button>
+<div class="s-d-header">
+    <div class="performance-title">{{ session.performance.name }}</div>
+</div>
+
+<div class="session-container">
+    <div class="detail-container">
+        <div class="poster"><img class="picture" src="{{ session.performance.poster.url }}"></div>
+        <div>
+            <div class="session-info">
+                <h1>Дата: </h1><div class="text">{{ session.date|date:"d F" }}</div>
+            </div>
+            <div class="session-info">
+                <h1>Время: </h1><div class="text">{{ session.date|time:"H:i" }}</div>
+            </div>
+            <div class="session-info">
+                <h1>Место: </h1><div class="text">{{ session.hall.name }}</div>
+            </div>
+        </div>
+    </div>
+    <div class="ticket-choice-list">
+        <div class="booking">
+            <h1>Выбранные места:</h1>
+
+            <form id="booking-form" action="{% url 'ticket_booking' performance_slug=session.performance.url session_pk=session.pk %}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" id="selected_seats" name="selected_seats">
+                <div id="selected-seats-info">Выберите место</div>
+                <button type="submit">Забронировать</button>
+            </form>
+        </div>
+        <div class="seating-chart">
+            <h1>Схема зрительного зала</h1>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 100">
+                <path d="M0 30 Q250 5 500 30" fill="none" stroke="#616161" stroke-width="5" />
+                <text x="200" y="60" font-size="30" fill="#616161">Сцена</text>
+            </svg>
+            <svg viewBox="0 -50 500 700" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+                        <feOffset result="offOut" in="SourceAlpha" dx="0" dy="0" />
+                        <feGaussianBlur result="blurOut" in="offOut" stdDeviation="1" />
+                        <feColorMatrix result="blueOut" in="blurOut" type="matrix"
+                            values="0 0 0 0 0
+                                    0 0 0 0 0
+                                    0 0 0 0 5
+                                    0 0 0 1 0"/>
+                        <feBlend in="SourceGraphic" in2="blueOut" mode="normal" />
+                    </filter>
+                </defs>
+                <text x="190" y="0" font-size="30" fill="#616161">Партер</text>
+                <g id="parter">
+                    {% for sector, rows in seating_chart.items %}
+                    {% if 'партер' in sector %}
+                    {% for row, seats in rows.items %}
+                    {% for seat in seats %}
+                    {% if seat.is_free %}
+                    <circle class="seat" id="seat_{{sector}}_{{row}}_{{seat.place}}"
+                          cx="{{ seat.x }}" cy="{{ seat.y }}" r="5"
+                          data-tooltip="Сектор: {{ sector }}
+                          Ряд: {{ row }}
+                          Место: {{ seat.place }}
+                          Цена: {{seat.price}} б.р."
+                          data-sector="{{ sector }}"
+                          data-row="{{ row }}"
+                          data-place="{{ seat.place }}"
+                          data-price="{{ seat.price }}">
+                    </circle>
+                    {% else %}
+                     <circle class="not-free-seat" cx="{{ seat.x }}" cy="{{ seat.y }}" r="5"></circle>
+                    {% endif%}
+                    {% endfor %}
+                    {% endfor %}
+                    {% endif %}
+                    {% endfor %}
+                </g>
+                <text x="190" y="500" font-size="30" fill="#616161">Балкон</text>
+                <g id="balcony">
+                    {% for sector, rows in seating_chart.items %}
+                    {% if 'балкон' in sector %}
+                    {% for row, seats in rows.items %}
+                    {% for seat in seats %}
+                    {% if seat.is_free %}
+                    <circle class="seat" id="seat_{{sector}}_{{row}}_{{seat.place}}"
+                          cx="{{ seat.x }}" cy="{{ seat.y }}" r="5"
+                          data-tooltip="Сектор: {{ sector }}
+                          Ряд: {{ row }}
+                          Место: {{ seat.place }}
+                          Цена: {{seat.price}} б.р."
+                          data-sector="{{ sector }}"
+                          data-row="{{ row }}"
+                          data-place="{{ seat.place }}"
+                          data-price="{{ seat.price }}"
+                          onclick="selectSeat(event)"></circle>
+                    {% else %}
+                     <circle class="not-free-seat" cx="{{ seat.x }}" cy="{{ seat.y }}" r="5"></circle>
+                    {% endif%}
+                    {% endfor %}
+                    {% endfor %}
+                    {% endif %}
+                    {% endfor %}
+                </g>
+            </svg>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+{% block js %}
+<script src="{% static 'js\ticket_booking_script.js' %}"></script>
+{% endblock js %}

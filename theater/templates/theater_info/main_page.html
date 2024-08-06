@@ -1,0 +1,27 @@
+{% extends 'theater_info/base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css\main_page_style.css' %}">
+{% endblock head %}
+
+<div class="imf-background">
+{% block content %}
+<div class="imf-background">
+<div class="main-container">
+    <h1>Добро пожаловать</h1>
+    {% for type_menu, content in menu.items %}
+        {% if "navigation-menu" in type_menu %}
+            {% for nav_type_menu, nav_content in content.items %}
+                {% if "base" in nav_type_menu %}
+                    {% for title, value in nav_content.items %}
+                    <a class="main-page-menu" href="{% url value %}">{{ title }}</a><br>
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
+</div>
+</div>
+{% endblock content %}
+</div>

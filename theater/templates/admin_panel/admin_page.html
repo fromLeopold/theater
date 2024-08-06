@@ -1,0 +1,109 @@
+{% extends 'theater_info/base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css\admin_page_style.css' %}">
+<link rel="stylesheet" href="{% static 'css\recommendations_style.css' %}">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+{% endblock head %}
+
+{% block content %}
+<div class="ap-header">
+    <div class="ap-title">АДМИНИСТРАТИВНАЯ ПАНЕЛЬ</div>
+</div>
+
+<div class="admin-content-container">
+    <div class="admin-menu">
+        <a href="{% url 'admin:index' %}">База данных</a>
+        <ul>
+            <li data-content="recommendations">Получить рекомендации</li>
+            <li class="active" data-content="statistics">Статистика</li>
+        </ul>
+    </div>
+    <div class="admin-content">
+        <div class="statistics">
+            <div class="graphs-container">
+                {% for title, graph in graphs.items %}
+                <div class="graph">
+                    <h2>{{ title }}</h2>
+                    {{ graph|safe }}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="recommendations">
+            <div class="recommendations-container">
+                <b>Цель:</b> предложить рекомендации по улучшению расписания сеансов спектаклей на основе собранной статистики.<br>
+                <b>Репертуар:</b> <br>
+                {% for performance in repertoire_list %}
+                <div class="repertoire-container">
+                    <b>{{ performance.name }}</b><br>
+                    {% for genre in performance.genre.all %}
+                    Жанр: {{ genre }}
+                    {% endfor %} <br>
+                    Дата начала показа: {{ performance.start_date }}<br>
+                    Дата окончания показа: {{ performance.expiration_date }}<br>
+                </div>
+                {% endfor %}
+                <b>Популярность спектаклей за последний месяц:</b> <br>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Спектакль</th>
+                            <th>Продано билетов</th>
+                            <th>Доход</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for performance in performances_popularity %}
+                        <tr>
+                            <td>{{ performance.performance__name }}</td>
+                            <td>{{ performance.total_sold_tickets }}</td>
+                            <td>{{ performance.total_revenue }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <b>Популярность времени за последний месяц:</b> <br>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Интервал времени</th>
+                            <th>Продано билетов</th>
+                            <th>Доход</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for interval, data in time_popularity %}
+                    <tr>
+                        <td>{{ interval }}</td>
+                        <td>{{ data.total_sold_tickets }}</td>
+                        <td>{{ data.total_revenue }}</td>
+                    </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <b>Рекомендации по расписанию</b> <br>
+                <b>Перенести вечерние сеансы на более позднее время в пятницу и субботу для удобства зрителей.</b><br>
+                <b>Увеличить количество сеансов для следующих спектаклей:</b><br>
+                {% for performance in top_performances %}
+                {{ performance.name }}<br>
+                {% endfor %}
+                <b>Ввести скидки на билеты для следующих спектаклей:</b><br>
+                {% for performance in least_popular_performances %}
+                {{ performance.name }}<br>
+                {% endfor %}
+                <b>Провести акцию "Семейный билет" с 20% скидкой для семей из 4 человек.<br>
+                Запустить рекламную кампанию, направленную на студентов и молодежь.</b><br>
+                <form method="get" action="download">
+                    <button type="submit" name="download" value="pdf">Скачать рекомендации в PDF</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block js %}
+<script src="{% static 'js\admin_page_script.js' %}"></script>
+{% endblock js %}

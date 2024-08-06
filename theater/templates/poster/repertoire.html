@@ -1,0 +1,44 @@
+{% extends 'theater_info/base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css\afisha_style.css' %}">
+{% endblock head %}
+
+
+{% block menu %}
+{% endblock menu %}
+
+
+{% block content %}
+<div class="afisha-header">
+    <div class="ah-title">РЕПЕРТУАР</div>
+</div>
+
+<div class="afisha-list-container">
+    <div class="afisha-list">
+        {% for performance in repertoire_list %}
+        <div class="session-conteiner">
+            <a href="{{ performance.get_absolute_url }}">
+                <img class="poster" src="{{ performance.poster.url }}" alt="{{ performance.name }}">
+            </a>
+            <div class="performance-age">{{ performance.age_restrictions }}+</div>
+            <a class="performance-title" href="{{ performance.get_absolute_url }}">{{ performance.name }}</a>
+            <div class="p-r-b-container">
+                <div class="performance-detail">
+                    {% if performance.premiere %}
+                    ПРЕМЬЕРА
+                    {% endif %}
+                </div>
+                <a href="{{ performance.get_absolute_url }}">
+                    <button class="button-detail">
+                        Сеансы
+                    </button>
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}
+

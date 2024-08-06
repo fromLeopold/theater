@@ -1,0 +1,10 @@
+{% autoescape off %}
+Привет, {{ user.username }},
+
+Пожалуйста, нажмите на ссылку ниже, чтобы подтвердить свой адрес электронной почты и завершить регистрацию учетной записи:
+
+http://{{ domain }}{% url 'activate' uidb64=uid token=token %}
+
+Спасибо
+Театр Django
+{% endautoescape %}

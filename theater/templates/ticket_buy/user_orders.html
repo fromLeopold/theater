@@ -1,0 +1,32 @@
+{% extends 'theater_info/base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css\basket_style.css' %}">
+<link rel="stylesheet" href="{% static 'css\user_orders_style.css' %}">
+{% endblock head %}
+
+{% block content %}
+<div class="basket-header">
+    <div class="basket-title">Мои билеты</div>
+</div>
+<div class="basket-container">
+    {% for order in order_list %}
+    <div class="order">
+        <h2>Спектакль: {{ order.ticket.session.performance.name }}</h2>
+        <p><span>Дата:</span> {{ order.ticket.session.date|date:"d.m" }}</p>
+        <p><span>Время:</span> {{ order.ticket.session.date|time:"H:i" }}</p>
+        <p><span>Место:</span> {{ order.ticket.session.hall.name }}</p>
+        <p><span>Сектор:</span> {{ order.ticket.seat.hall_sector.name }}</p>
+        <p><span>Ряд:</span> {{ order.ticket.seat.row }}</p>
+        <p><span>Место:</span> {{ order.ticket.seat.place }}</p>
+        <p><span>Цена:</span> {{ order.ticket.price }}</p>
+        <p><span>Номер брони:</span> {{ order.order_number }}</p>
+        <form method="get" action="{% url 'order_download' %}">
+            <button class="button-download" type="submit" name="download" value="download_{{ order.pk }}">Скачать</button>
+        </form>
+    </div>
+    {% endfor %}
+</div>
+{% endblock content %}
+

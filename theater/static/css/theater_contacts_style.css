@@ -1,0 +1,32 @@
+.contacts-header {
+    height: 150px;
+    margin-left: 100px;
+    margin-right: 100px;
+    text-align: center;
+}
+
+.c-h-title {
+    font-size: 50px;
+    line-height: 150px;
+}
+
+.container-contacts {
+    padding-bottom: 70px;
+    margin-left: 100px;
+    margin-right: 100px;
+    text-align: center;
+}
+
+.info-block {
+    margin-bottom: 10px;
+}
+
+.title {
+    font-size: 20px;
+}
+
+.info {
+    font-size: 30px;
+    line-height: 1.2;
+    color: #e4e4f5;
+}

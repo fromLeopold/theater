@@ -1,0 +1,65 @@
+{% extends 'theater_info/base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css\troupe_style.css' %}">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+{% endblock head %}
+
+{% block menu %}
+{% endblock menu %}
+
+{% block content %}
+<div class="troupe-header">
+    <div class="th-title">ТРУППА</div>
+    <div class="troupe-menu">
+        <ul>
+            <li class="active" data-content="actors">Актёры</li>
+            <li data-content="art-group">Художественное руководство</li>
+        </ul>
+    </div>
+</div>
+
+<div class="troupe-list-container">
+        <div class="troupe-content">
+            <div class="actors hide">
+                <div class="troupe-list">
+                {% for actor in actor_list %}
+                    <div class="member-container">
+                        <a class="a-photo" href="{% url 'troupe_member_details' actor.pk %}">
+                            <img class="member-photo" src="{{ actor.image.url }}">
+                        </a>
+                        <a class="member-name" href="{% url 'troupe_member_details' actor.pk %}">
+                            <p>{{ actor.last_name }}</p>
+                            <p>{{ actor.first_name }}</p>
+                            <p>{{ actor.middle_name }}</p>
+                        </a>
+                    </div>
+                {% endfor %}
+                </div>
+            </div>
+            <div class="art-group hide">
+                <div class="troupe-list">
+                {% for member in art_group_list %}
+                    <div class="member-container">
+                        <a class="a-photo" href="{% url 'troupe_member_details' member.pk %}">
+                            <img class="member-photo" src="{{ member.image.url }}">
+                        </a>
+                        <a class="member-name" href="{% url 'troupe_member_details' member.pk %}">
+                            <p>{{ member.last_name }}</p>
+                            <p>{{ member.first_name }}</p>
+                            <p>{{ member.middle_name }}</p>
+                        </a>
+                    </div>
+                {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+{% block js %}
+<script src="{% static 'js\troupe_script.js' %}"></script>
+{% endblock js %}

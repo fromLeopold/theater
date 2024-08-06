@@ -1,0 +1,134 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: #1b1a1c;
+    overflow-x: hidden;
+    color: #9c9cad;
+    font: 400 16px / 26px 'Montserrat', sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+table {
+    width: 100%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    background-color: transparent;
+    box-shadow: 0 0px 16px blue;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+thead {
+    background-color: #616161;
+}
+
+thead th {
+    padding: 10px;
+}
+
+tbody tr:hover {
+    background-color: #616161;
+}
+
+tbody td {
+    padding: 10px;
+    text-align: center;
+}
+
+.m-h-conteiner {
+    top: 0px;
+    height: auto;
+    width: 100%;
+    line-height: 70px;
+    border-bottom: 1px solid #616161;
+    background: #1b1a1c;
+}
+
+.conteiner {
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    background-color: #1b1a1c;
+}
+
+.main-header {
+    display: inline-flex;
+    flex-direction: row;
+    background-color: #1b1a1c;
+    width: 100%;
+}
+
+.mh-name {
+    margin-left: 0;
+    float:left;
+    width: 30%;
+    font-weight: bold;
+    font-size: 24px;
+    text-shadow: 2px 2px 4px blue;
+    color: black;
+}
+
+.menu {
+    display: inline-flex;
+    flex-direction: row;
+    width: 70%;
+    font-size: 17px;
+    padding-top: 10px;
+}
+
+
+.nav-menu {
+    display: inline-flex;
+    flex-direction: column;
+    vertical-align: top;
+    width: 80%;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+.nav-block-menu {
+    display: flex;
+    flex-direction: row;
+}
+
+.nav-menu-item {
+    min-width: 25%;
+    text-align: left;
+}
+
+.auth-menu {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    text-align: right;
+}
+
+.nav-link {
+    text-decoration: none;
+    line-height: 1.2;
+    font-weight: bold;
+    color: #9c9cad;
+    margin-bottom: 20px;
+    display: block
+}
+
+.nav-link:hover {
+    color: #e4e4f5;
+}
+
+.content-conteiner {
+    background-color: #1b1a1c;
+    display: inline-flex;
+    flex-direction: column;
+    width: 100%;
+}

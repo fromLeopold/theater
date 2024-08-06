@@ -1,0 +1,45 @@
+{% extends 'theater_info/base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css\afisha_style.css' %}">
+{% endblock head %}
+
+{% block content %}
+<div class="afisha-header">
+    <div class="ah-title">АФИША</div>
+</div>
+
+<div class="afisha-list-container">
+    <div class="afisha-list">
+        {% for session in session_list %}
+        <div class="session-conteiner">
+            <a href="{% url 'ticket_booking' performance_slug=session.performance.url session_pk=session.pk %}">
+                <img class="poster" src="{{ session.performance.poster.url }}" alt="{{ session.performance.name }}">
+            </a>
+            <div class="performance-age">{{ session.performance.age_restrictions }}+</div>
+            <a class="performance-title"
+               href="{% url 'ticket_booking' performance_slug=session.performance.url session_pk=session.pk %}">
+                {{ session.performance.name }}
+            </a>
+            <div class="p-r-b-container">
+                <div class="performance-detail">
+                    {% if session.performance.premiere %}
+                    ПРЕМЬЕРА
+                    {% endif %}
+                    <div class="date">{{ session.date|date:"d.m" }} /
+                        {{ session.date|time:"H:i" }} / {{ session.hall.name }}
+                    </div>
+                </div>
+                <a href="{% url 'ticket_booking' performance_slug=session.performance.url session_pk=session.pk %}">
+                    <button class="button-detail">
+                        Билеты
+                    </button>
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}
+

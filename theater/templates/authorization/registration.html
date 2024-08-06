@@ -1,0 +1,17 @@
+{% extends 'theater_info/base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css\authorization_style.css' %}">
+{% endblock head %}
+
+{% block content %}
+<div class="main">
+    <h2>Регистрационная форма</h2>
+    <form method ='POST' action="{% url 'registration' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Зарегистрироваться</button>
+    </form>
+</div>
+{% endblock content %}

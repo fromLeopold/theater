@@ -1,0 +1,20 @@
+{% extends 'theater_info/base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css\authorization_style.css' %}">
+{% endblock head %}
+
+{% block menu %}
+{% endblock menu %}
+
+{% block content %}
+<div class="main">
+    <h2>Форма входа</h2>
+    <form method ='POST' action="{% url 'site_login' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Войти</button>
+    </form>
+</div>
+{% endblock content %}

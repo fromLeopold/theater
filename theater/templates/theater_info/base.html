@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Theater</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'css\base_style.css' %}">
+    {% block head %}
+    {% endblock head %}
+
+</head>
+<body>
+    <div class="m-h-conteiner">
+        <div class="conteiner">
+            <div class="main-header">
+                <div class="mh-name"><a href="{% url 'main_page' %}">DJANGO-THEATER</a></div>
+                <div class="menu">
+                    {% for type_menu, content in menu.items %}
+                    {% if "navigation-menu" in type_menu %}
+                    <div class="nav-menu">
+                        {% for nav_type_menu, nav_content in content.items %}
+
+                        {% if "base" in nav_type_menu %}
+                        <div class="nav-block-menu">
+                            {% for title, value in nav_content.items %}
+                            <div class="nav-menu-item">
+                                <a class="nav-link" href="{% url value %}">{{ title }}</a>
+                            </div>
+                            {% endfor %}
+                        </div>
+
+                        {% elif "client" in nav_type_menu %}
+                        <div class="nav-block-menu">
+                            {% for title, value in nav_content.items %}
+                            <div class="nav-menu-item">
+                                <a class="nav-link" href="{% url value %}">{{ title }}</a>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+
+                    </div>
+                    {% elif "auth-menu" in type_menu %}
+                    <div class="auth-menu">
+                        {% for title, value in content.items %}
+                        <a class="nav-link" href="{% url value %}">{{ title }}</a>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="conteiner">
+        <div class="content-conteiner">
+            {% block content %}
+            {% endblock content %}
+            <div class="footer">
+            {% block footer %}
+            {% endblock footer %}
+            </div>
+        </div>
+    </div>
+{% block js %}
+{% endblock js %}
+</body>
+</html>

@@ -1,0 +1,36 @@
+{% extends 'theater_info/base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css\basket_style.css' %}">
+{% endblock head %}
+
+{% block content %}
+<div class="basket-header">
+    <div class="basket-title">Забронированные билеты</div>
+</div>
+<div class="basket-container">
+    <form method="POST" action="{% url 'basket' %}">
+        {% csrf_token %}
+        {% for booking in booking_list %}
+        <div class="ticket">
+            <input type="checkbox" id="ticket_{{ booking.pk }}" name="tickets" value="{{ booking.pk }}">
+            <label for="ticket_{{ booking.pk }}">
+                <h2>Спектакль: {{ booking.ticket.session.performance.name }}</h2>
+                <p><span>Дата:</span> {{ booking.ticket.session.date|date:"d.m" }}</p>
+                <p><span>Время:</span> {{ booking.ticket.session.date|time:"H:i" }}</p>
+                <p><span>Место:</span> {{ booking.ticket.session.hall.name }}</p>
+                <p><span>Сектор:</span> {{ booking.ticket.seat.hall_sector.name }}</p>
+                <p><span>Ряд:</span> {{ booking.ticket.seat.row }}</p>
+                <p><span>Место:</span> {{ booking.ticket.seat.place }}</p>
+                <p><span>Цена:</span> {{ booking.ticket.price }}</p>
+                <p><span>Номер брони:</span> {{ booking.booking_number }}</p>
+                <button class="button-delete" type="submit" name="action" value="delete_{{ book.pk }}">Удалить</button>
+            </label>
+        </div>
+        {% endfor %}
+        <button class="button-buy" type="submit" name="action" value="buy">Купить</button>
+    </form>
+</div>
+{% endblock content %}
+

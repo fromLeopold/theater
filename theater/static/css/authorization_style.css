@@ -1,0 +1,51 @@
+.main {
+    border-radius: 15px;
+    box-shadow: 0 4px 16px #616161;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 84px;
+    margin-bottom: 84px;
+    padding: 20px;
+    width: 400px;
+}
+
+.main h2 {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #9c9cad;
+    color: #9c9cad;
+    border-radius: 5px;
+    background-color: transparent;
+}
+
+button[type="submit"] {
+    padding: 15px;
+    border-radius: 10px;
+    border: none;
+    background-color: transparent;
+    box-shadow: 0 0px 8px blue;
+    color: #9c9cad;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+}
+
+button:hover {
+    color: blue;
+}

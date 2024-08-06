@@ -1,0 +1,76 @@
+a {
+    text-decoration: none;
+    color: #9c9cad;
+}
+
+.ap-header {
+    height: 200px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.ap-title {
+    margin-left: 0;
+    float:left;
+    font-size: 50px;
+}
+
+.admin-menu {
+    margin-top: 40px;
+    margin-left: 4%;
+    width: 40%;
+    font-size: 30px;
+    line-height: 1.5;
+}
+
+.admin-menu a, li {
+    list-style-type: none;
+    cursor: pointer;
+}
+
+.admin-menu a:hover, li:hover {
+    text-shadow: 0px 0px 6px blue;
+}
+
+.admin-menu li.active {
+    text-shadow: 0px 0px 4px blue;
+}
+
+.admin-content .hide {
+    visibility: hidden;
+    position: absolute;
+}
+
+.admin-content-container {
+    padding-left: 2%;
+    padding-right: 2%;
+    box-shadow: 0 4px 16px #616161;
+    margin-bottom: 100px;
+}
+
+.graphs-container {
+    display: flex;
+    vertical-align: top;
+    flex-wrap: wrap;
+    width: 96%;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+.graph {
+    padding: 2%;
+    border: 1px solid #444444;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    width: 41%;
+    margin: 2%;
+    text-align: center;
+}
+
+.graph-container .plotly-graph-div {
+    width: 100%;
+    height: 100%;
+}
+
+

@@ -1,0 +1,106 @@
+.afisha-header {
+    height: 150px;
+    width: 100%;
+}
+
+.ah-title {
+    margin-left: 0;
+    float:left;
+    font-size: 50px;
+    line-height: 150px;
+}
+
+.afisha-list-container {
+    padding-left: 2%;
+    padding-right: 2%;
+    box-shadow: 0 4px 16px #616161;
+    margin-bottom: 100px;
+}
+
+.afisha-list {
+    display: inline-flex;
+    vertical-align: top;
+    flex-wrap: wrap;
+    width: 94%;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+.session-conteiner {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    padding-left: 2%;
+    padding-right: 2%;
+    display: flex;
+    flex-direction: column;
+    width: 21%;
+    text-align: center;
+    font-size: 16px;
+    word-break: break-word;
+    cursor: default;
+}
+
+.poster {
+    margin-bottom: auto;
+    border-radius: 22px;
+    cursor: pointer;
+    width: 100%;
+    display: block;
+    box-shadow: 0 0px 13px blue;
+    border: 1px solid black;
+}
+
+.poster:hover {
+    box-shadow: 0 0px 13px red;
+    border: 1px solid black;
+    background: None;
+}
+
+.performance-age {
+    margin-top: 30px;
+}
+
+.performance-title {
+    margin-top: 10px;
+    margin-bottom: auto;
+    margin-bottom: 15px;
+    display: block;
+    cursor: pointer;
+    font-size: 20px;
+    color: #e1e1eb;
+    text-decoration-line: none;
+}
+
+.performance-title:hover {
+    text-shadow: 0 0px 10px blue;
+}
+
+.p-r-b-container {
+    display: inline-flex;
+    flex-direction: column;
+    margin-top: auto;
+}
+
+.performance-detail {
+    margin-top: auto;
+    margin-bottom: 10px;
+}
+
+.button-detail {
+    margin-top: auto;
+    margin-bottom: 10px;
+    border-radius: 40px;
+    width: 70%;
+    height: 50px;
+    height: 50px;
+    font-size: 20px;
+    background: transparent;
+    border: 2px solid blue;
+    color: #e1e1eb;
+}
+
+.button-detail:hover {
+    text-shadow: 0 0px 10px blue;
+    box-shadow: 0 0px 13px blue;
+    cursor: pointer;
+}

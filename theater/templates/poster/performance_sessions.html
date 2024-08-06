@@ -1,0 +1,46 @@
+{% extends 'theater_info/base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css\performance_sessions_style.css' %}">
+{% endblock head %}
+
+{% block content %}
+<button class="back-button" onclick="history.back()">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+        <path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="miter" vector-effect="non-scaling-stroke" d="M2.5,11 L12,1 M2.5,11 L12,21 M1.7,11 L27,11"></path>
+    </svg>
+</button>
+
+
+<div class="session-list-container">
+    <div class="poster-container">
+        <img class="poster" src="{{ performance.poster.url }}">
+        <div>
+            <p class="performance-title">{{ performance.name }}</p>
+            <p class="performance-detail">
+                {% for g in performance.genre.all %}
+                {{ g.name }} /
+                {% endfor %}
+                {{ performance.age_restrictions }}+</p>
+            <p class="performance-detail">{{ performance.description }}</p>
+        </div>
+    </div>
+{% for month, session_list in session_dict_by_month.items %}
+    <div class="dividing-line"></div>
+    <div class="sessions-container">
+        <div class="session-date">
+            {{ month }}
+        </div>
+        <div class="times-container">
+            {% for session in session_list %}
+            <a href="{% url 'ticket_booking' performance_slug=performance.url session_pk=session.pk %}" class="time-detail">
+                <div class="date">{{ session.date|date:"d.m" }}</div>
+                <div class="time-hall">{{ session.date|time:"H:i" }} / {{ session.hall.name }}</div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+{% endfor %}
+</div>
+{% endblock content %}
